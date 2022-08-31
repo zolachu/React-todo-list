@@ -3,6 +3,7 @@ import ExpenseItem from "./ExpenseItem";
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from "./ExpensesList";
 
 const Expenses = (props) => {
   const [selected, setSelected] = useState("2020");
@@ -11,20 +12,9 @@ const Expenses = (props) => {
     setSelected(selection);
     console.log(selected);
   };
-  const filteredArray = props.items.filter(
+  const filteredExpenses = props.items.filter(
     (item) => item.date.getFullYear() === Number(selected)
   );
-
-  let expensesValue = <p>No expenses found.</p>;
-  if (filteredArray.length > 0)
-    expensesValue = filteredArray.map((item) => (
-      <ExpenseItem
-        key={item.id}
-        title={item.title}
-        amount={item.amount}
-        date={item.date}
-      />
-    ));
 
   return (
     <div>
@@ -33,7 +23,7 @@ const Expenses = (props) => {
           selected={selected}
           onFilterSelected={filterSelectedHandler}
         />
-        {expensesValue}
+        <ExpensesList filteredExpenses={filteredExpenses} />
       </Card>
     </div>
   );
