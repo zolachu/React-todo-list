@@ -14,7 +14,7 @@ const App = () => {
     {
       id: "e2",
       date: new Date(2020, 3, 0),
-      amount: 294,
+      amount: 540,
       title: "School courses",
     },
     {
